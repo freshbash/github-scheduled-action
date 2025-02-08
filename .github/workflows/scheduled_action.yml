@@ -12,8 +12,9 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
         
-      - name: Modify File (21f1004913@ds.study.iitm.ac.in)
-        run: echo "Last run: $(date -u)" > daily-update.txt
+      - name: 21f1004913@ds.study.iitm.ac.in
+        run: |
+          echo "Last run: $(date -u)" > daily-update.txt
 
       - name: Commit Changes
         run: |
