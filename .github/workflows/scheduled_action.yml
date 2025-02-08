@@ -3,7 +3,7 @@ name: Daily Commit
 on:
   schedule:
     - cron: "30 2 * * *"  # Runs daily at 02:30 UTC
-  workflow_dispatch:  # Allows manual trigger
+  workflow_dispatch:
 
 jobs:
   daily-update:
@@ -11,16 +11,17 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
-        
-      - name: 21f1004913@ds.study.iitm.ac.in
+        with:
+          token: ${{ secrets.PAT }}  # Use the PAT token
+
+      - name: Modify File (21f1004913@ds.study.iitm.ac.in)
         run: |
           echo "Last run: $(date -u)" > daily-update.txt
 
-      - name: Commit Changes
+      - name: Commit and Push Changes
         run: |
           git config --global user.name "freshbash"
           git config --global user.email "bhaswarsengupta@gmail.com"
           git add daily-update.txt
           git commit -m "Daily commit - $(date -u)" || echo "No changes to commit"
-          git push
-
+          git push origin main  # Replace 'main' with your branch name
