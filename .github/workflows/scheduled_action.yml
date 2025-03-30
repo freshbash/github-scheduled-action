@@ -13,6 +13,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           token: ${{ secrets.PAT }}  # Use the PAT token
+          persist-credentials: false
 
       - name: Modify File (21f1004913@ds.study.iitm.ac.in)
         run: |
@@ -22,6 +23,7 @@ jobs:
         run: |
           git config --global user.name "freshbash"
           git config --global user.email "bhaswarsengupta@gmail.com"
+          git remote set-url origin https://freshbash:${{ secrets.PAT }}@github.com/freshbash/github-scheduled-action.git
           git add daily-update.txt
           git commit -m "Daily commit - $(date -u)" || echo "No changes to commit"
           git push origin main  # Replace 'main' with your branch name
